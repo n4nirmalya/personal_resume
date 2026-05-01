@@ -117,7 +117,7 @@ function updateExperienceScene() {
   const clampedScroll = Math.min(Math.max(relativeScroll, 0), 1);
 
   const totalStages = jobStages.length;
-  const rawStage = clampedScroll * (totalStages - 1); 
+  const rawStage = clampedScroll * totalStages; 
   const stageIndex = Math.floor(rawStage);
   const stageProgress = rawStage - stageIndex;
 
@@ -127,7 +127,7 @@ function updateExperienceScene() {
   });
 
   const startMap = progressionMap[stageIndex] || progressionMap[0];
-  const endMap = progressionMap[stageIndex + 1] || progressionMap[totalStages];
+  const endMap = progressionMap[stageIndex + 1] || progressionMap[totalStages] || progressionMap[4];
   
   skillItems.forEach(item => {
     const skillName = item.dataset.skill;
