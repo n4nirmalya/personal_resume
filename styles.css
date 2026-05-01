@@ -93,6 +93,18 @@ body {
   color: var(--text);
 }
 
+.menu-toggle {
+  display: none;
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 101;
+}
+
 /* Hero Section */
 .hero {
   min-height: 100vh;
@@ -253,13 +265,6 @@ body {
   box-shadow: var(--shadow-xl);
 }
 
-@media (max-width: 900px) {
-  .about-grid {
-    grid-template-columns: 1fr;
-    gap: 3rem;
-  }
-}
-
 /* Bento Grid Technical Ecosystem */
 .bento-grid {
   display: grid;
@@ -366,29 +371,6 @@ body {
   gap: 2rem;
 }
 
-@media (max-width: 1024px) {
-  .bento-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-  .bento-main, .bento-wide {
-    grid-column: span 2;
-  }
-}
-
-@media (max-width: 768px) {
-  .bento-grid {
-    grid-template-columns: 1fr;
-  }
-  .bento-main, .bento-wide, .bento-card {
-    grid-column: span 1;
-    grid-row: span 1;
-  }
-  .split-row {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}
-
 /* Fixed-Scene Scrollytelling */
 .experience-fixed {
   position: relative;
@@ -406,7 +388,7 @@ body {
 }
 
 .scroll-trigger {
-  height: 350vh; /* Increased for the additional academic stage */
+  height: 350vh;
 }
 
 .scrolly-grid {
@@ -425,7 +407,6 @@ body {
   margin-bottom: 2.5rem;
 }
 
-/* Left Column: Skills */
 .skills-progress-wrapper {
   display: flex;
   flex-direction: column;
@@ -459,13 +440,11 @@ body {
   height: 100%;
   width: 0%;
   background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
-  transition: width 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-/* Right Column: Jobs */
 .jobs-column {
   position: relative;
-  height: 400px; /* Fixed height to swap content */
+  height: 400px;
   display: flex;
   align-items: center;
 }
@@ -516,164 +495,7 @@ body {
   line-height: 1.7;
 }
 
-/* Responsive */
-@media (max-width: 900px) {
-  .hero-grid {
-    grid-template-columns: 1fr;
-    text-align: center;
-    gap: 3rem;
-  }
-  
-  .hero-content {
-    order: 2;
-  }
-  
-  .profile-container {
-    order: 1;
-    margin-bottom: 2rem;
-  }
-
-  .profile-frame {
-    width: min(280px, 80vw);
-    height: min(350px, 100vw);
-  }
-  
-  .hero-subtitle {
-    margin-inline: auto;
-  }
-
-  /* Bento Mobile */
-  .bento-grid {
-    grid-template-columns: 1fr;
-  }
-  .bento-main, .bento-wide {
-    grid-column: span 1;
-  }
-  .bento-main h3 {
-    font-size: 1.75rem;
-  }
-
-  /* About Mobile */
-  .about-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-  .about-stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 1rem;
-  }
-  .stat-item {
-    padding: 1rem;
-    gap: 1rem;
-  }
-
-  /* Fixed Experience Mobile - Disable Sticky */
-  .experience-fixed {
-    padding-bottom: 4rem;
-  }
-  .sticky-container {
-    position: relative;
-    height: auto;
-    overflow: visible;
-    padding: 2rem 0;
-  }
-  .scroll-trigger {
-    display: none;
-  }
-  .scrolly-grid {
-    grid-template-columns: 1fr;
-    gap: 3rem;
-  }
-  .jobs-column {
-    height: auto;
-    display: block;
-  }
-  .job-stage {
-    position: relative;
-    opacity: 1;
-    transform: none;
-    pointer-events: all;
-    margin-bottom: 3rem;
-    border-left: 2px solid var(--accent);
-    padding-left: 1.5rem;
-  }
-  .accent-text {
-    font-size: 1.75rem;
-  }
-  .skills-column {
-    order: 2;
-  }
-  .jobs-column {
-    order: 1;
-  }
-  
-.menu-toggle {
-  display: none;
-  background: none;
-  border: 1px solid var(--border);
-  color: var(--text);
-  font-size: 1.5rem;
-  padding: 0.5rem;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-@media (max-width: 900px) {
-  .menu-toggle {
-    display: block;
-  }
-  
-  .nav-links {
-    position: fixed;
-    top: 80px;
-    left: 0;
-    width: 100%;
-    background: var(--bg);
-    flex-direction: column;
-    padding: 2rem;
-    gap: 1.5rem;
-    border-bottom: 1px solid var(--border);
-    transform: translateY(-150%);
-    transition: transform 0.3s ease;
-    z-index: 99;
-  }
-  
-  .nav-links.active {
-    display: flex;
-    transform: translateY(0);
-  }
-}
-  
-  .section {
-    padding: 4rem 0;
-  }
-}
-
-/* Skills */
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 1.5rem;
-}
-
-.skill-card {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  padding: 1.5rem;
-  border-radius: 16px;
-  text-align: center;
-  transition: all 0.3s ease;
-  cursor: default;
-}
-
-.skill-card:hover {
-  border-color: var(--accent);
-  transform: translateY(-5px);
-  background: var(--panel-light);
-}
-
-/* Buttons */
+/* Base Buttons */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -705,33 +527,7 @@ body {
   background: var(--panel-light);
 }
 
-/* Responsive */
-@media (max-width: 1024px) {
-  .hero-grid {
-    grid-template-columns: 1fr;
-    text-align: center;
-    gap: 3rem;
-  }
-  
-  .hero-content {
-    order: 2;
-  }
-  
-  .profile-container {
-    order: 1;
-  }
-
-  .profile-frame {
-    width: 280px;
-    height: 350px;
-  }
-  
-  .hero-subtitle {
-    margin-inline: auto;
-  }
-}
-
-/* Reveal Animations */
+/* Animations */
 .reveal {
   opacity: 0;
   transform: translateY(20px);
@@ -741,4 +537,86 @@ body {
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Mobile & Tablet Overrides */
+@media (max-width: 1024px) {
+  .bento-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .bento-main, .bento-wide {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 900px) {
+  .section {
+    padding: 4rem 0;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 3rem;
+  }
+  
+  .hero-content { order: 2; }
+  .profile-container { order: 1; margin-bottom: 2rem; }
+  .profile-frame { width: min(280px, 80vw); height: min(350px, 100vw); }
+  .hero-subtitle { margin-inline: auto; }
+
+  .menu-toggle {
+    display: block;
+  }
+  
+  .nav-links {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    background: var(--bg);
+    flex-direction: column;
+    padding: 2rem;
+    gap: 1.5rem;
+    border-bottom: 1px solid var(--border);
+    transform: translateY(-150%);
+    transition: transform 0.3s ease;
+    z-index: 99;
+    display: none;
+  }
+  
+  .nav-links.active {
+    display: flex;
+    transform: translateY(0);
+  }
+
+  .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .about-stats { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+
+  .bento-grid { grid-template-columns: 1fr; }
+  .bento-main, .bento-wide, .bento-card { grid-column: span 1; grid-row: span 1; }
+  .bento-main h3 { font-size: 1.75rem; }
+  .split-row { flex-direction: column; align-items: flex-start; }
+
+  .sticky-container {
+    position: relative;
+    height: auto;
+    overflow: visible;
+    padding: 2rem 0;
+  }
+  .scroll-trigger { display: none; }
+  .scrolly-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .jobs-column { height: auto; display: block; }
+  .job-stage {
+    position: relative;
+    opacity: 1;
+    transform: none;
+    pointer-events: all;
+    margin-bottom: 3rem;
+    border-left: 2px solid var(--accent);
+    padding-left: 1.5rem;
+  }
+  .accent-text { font-size: 1.75rem; }
+  .skills-column { order: 2; }
+  .jobs-column { order: 1; }
 }
