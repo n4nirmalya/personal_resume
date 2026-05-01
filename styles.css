@@ -277,6 +277,24 @@ body {
   }
 }
 
+.social-link {
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--text);
+  padding: 0.75rem 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  background: var(--panel);
+}
+
+.social-link:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-xl);
+}
+
 /* Bento Grid Technical Ecosystem */
 .bento-grid {
   display: grid;
@@ -419,102 +437,13 @@ body {
   margin-bottom: 2.5rem;
 }
 
-.skills-progress-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 2.5rem;
-}
-
-.skill-progress-item {
-  width: 100%;
-}
-
-.skill-info {
-  display: flex;
-  justify-content: space-between;
-  font-weight: 600;
-  margin-bottom: 0.75rem;
-  font-size: 1rem;
-}
-
-.skill-info .level {
-  color: var(--accent-secondary);
-}
-
-.progress-bar {
-  height: 8px;
-  background: var(--panel-light);
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.progress-bar .fill {
-  height: 100%;
-  width: 0%;
-  background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
-}
-
-.jobs-column {
-  position: relative;
-  height: 400px;
-  display: flex;
-  align-items: center;
-}
-
-.job-stage {
-  position: absolute;
-  opacity: 0;
-  transform: translateY(20px);
-  pointer-events: none;
-  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-.job-stage.active {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: all;
-}
-
-.stage-tag {
-  display: inline-block;
-  padding: 0.35rem 1rem;
-  background: rgba(99, 102, 241, 0.1);
-  color: var(--accent);
-  border-radius: 99px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  margin-bottom: 1.5rem;
-}
-
-.accent-text {
-  font-size: 2.5rem;
-  font-weight: 800;
-  margin: 0;
-  line-height: 1.1;
-  letter-spacing: -0.03em;
-}
-
-.company-name {
-  color: var(--accent-secondary);
-  font-weight: 700;
-  font-size: 1.25rem;
-  margin: 0.75rem 0 1.5rem;
-}
-
-.job-desc {
-  color: var(--text-muted);
-  font-size: 1.1rem;
-  line-height: 1.7;
-}
-
-/* Premium Mobile Skill Matrix */
-.mobile-skill-matrix {
-  display: none;
+.desktop-skill-matrix {
+  display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-  margin-top: 2.5rem;
+  gap: 2rem;
 }
 
+/* Premium Skill Matrix (Shared) */
 .matrix-item {
   display: flex;
   flex-direction: column;
@@ -604,18 +533,64 @@ body {
   text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
-@media (max-width: 900px) {
-  .mobile-skill-matrix {
-    display: grid;
-  }
-  
-  .job-stage.visible .water-fill {
-    width: var(--w);
-  }
-  
-  .skills-column {
-    display: none;
-  }
+.mobile-skill-matrix {
+  display: none;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.jobs-column {
+  position: relative;
+  height: 400px;
+  display: flex;
+  align-items: center;
+}
+
+.job-stage {
+  position: absolute;
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.job-stage.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
+
+.stage-tag {
+  display: inline-block;
+  padding: 0.35rem 1rem;
+  background: rgba(99, 102, 241, 0.1);
+  color: var(--accent);
+  border-radius: 99px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.accent-text {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin: 0;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.company-name {
+  color: var(--accent-secondary);
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin: 0.75rem 0 1.5rem;
+}
+
+.job-desc {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  line-height: 1.7;
 }
 
 /* Base Buttons */
@@ -715,8 +690,20 @@ body {
     visibility: visible;
   }
 
+  .mobile-skill-matrix {
+    display: grid;
+  }
+  
+  .job-stage.visible .water-fill {
+    width: var(--w);
+  }
+  
+  .skills-column {
+    display: none;
+  }
+
   .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-  .about-stats { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+  .about-stats { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
 
   .bento-grid { grid-template-columns: 1fr; }
   .bento-main, .bento-wide, .bento-card { grid-column: span 1; grid-row: span 1; }
