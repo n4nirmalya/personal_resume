@@ -540,6 +540,83 @@ body {
   margin-top: 2.5rem;
 }
 
+/* Compact Modern Project Grid */
+.compact-project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.compact-project-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.compact-project-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--accent);
+  background: var(--panel-light);
+  box-shadow: var(--shadow-xl);
+}
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.external-icon {
+  color: var(--text-muted);
+  transition: color 0.3s ease;
+}
+
+.external-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.external-icon:hover {
+  color: var(--accent);
+}
+
+.compact-project-card h3 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin: 0;
+  color: var(--text);
+}
+
+.compact-project-card p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.project-tech-pills {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: auto;
+}
+
+.project-tech-pills span {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--accent-secondary);
+  padding: 0.35rem 0.85rem;
+  background: rgba(16, 185, 129, 0.1);
+  border-radius: 8px;
+}
+
 .jobs-column {
   position: relative;
   height: 400px;
@@ -753,4 +830,17 @@ body {
   .accent-text { font-size: 1.75rem; }
   .skills-column { order: 2; }
   .jobs-column { order: 1; }
+
+  /* Mobile Project Showcase Override */
+  .compact-project-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .compact-project-card {
+    text-align: center;
+    align-items: center;
+  }
+  .project-tech-pills {
+    justify-content: center;
+  }
 }
