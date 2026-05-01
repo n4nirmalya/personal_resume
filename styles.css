@@ -234,35 +234,47 @@ body {
 .stat-item {
   background: var(--panel);
   border: 1px solid var(--border);
-  padding: 1.25rem 2rem;
+  padding: 1.25rem 1.5rem;
   border-radius: 16px;
   display: flex;
-  align-items: center;
-  gap: 1.5rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
 }
 
 .stat-value {
   font-size: 2rem;
   font-weight: 800;
   color: var(--accent-secondary);
+  line-height: 1;
 }
 
-.social-link {
-  text-decoration: none;
-  font-weight: 600;
-  color: var(--text);
-  padding: 0.75rem 1.5rem;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  transition: all 0.3s ease;
-  background: var(--panel);
+.stat-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
 }
 
-.social-link:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-xl);
+@media (max-width: 900px) {
+  .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .about-stats { 
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); 
+    gap: 1rem;
+  }
+  .stat-item {
+    padding: 1rem;
+    align-items: center;
+    text-align: center;
+  }
+  .stat-value {
+    font-size: 1.5rem;
+  }
+  .stat-label {
+    font-size: 0.65rem;
+  }
 }
 
 /* Bento Grid Technical Ecosystem */
@@ -495,6 +507,117 @@ body {
   line-height: 1.7;
 }
 
+/* Premium Mobile Skill Matrix */
+.mobile-skill-matrix {
+  display: none;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.matrix-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.icon-ring {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  background: var(--panel);
+  box-shadow: 0 0 15px rgba(99, 102, 241, 0.1);
+  transition: all 0.4s ease;
+}
+
+.matrix-item:hover .icon-ring {
+  border-color: var(--accent);
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+  transform: scale(1.1);
+}
+
+.icon-ring svg {
+  width: 24px;
+  height: 24px;
+}
+
+.water-container {
+  width: 100%;
+  height: 40px;
+  background: var(--panel-light);
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.water-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0%; 
+  background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+  transition: width 1.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  opacity: 0.9;
+  overflow: hidden;
+}
+
+.water-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  animation: liquid-shine 2.5s infinite linear;
+}
+
+@keyframes liquid-shine {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.water-text {
+  position: relative;
+  z-index: 2;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+@media (max-width: 900px) {
+  .mobile-skill-matrix {
+    display: grid;
+  }
+  
+  .job-stage.visible .water-fill {
+    width: var(--w);
+  }
+  
+  .skills-column {
+    display: none;
+  }
+}
+
 /* Base Buttons */
 .btn {
   display: inline-flex;
@@ -579,15 +702,17 @@ body {
     padding: 2rem;
     gap: 1.5rem;
     border-bottom: 1px solid var(--border);
-    transform: translateY(-150%);
-    transition: transform 0.3s ease;
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
     z-index: 99;
-    display: none;
   }
   
   .nav-links.active {
-    display: flex;
     transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
   }
 
   .about-grid { grid-template-columns: 1fr; gap: 2rem; }
@@ -609,12 +734,34 @@ body {
   .jobs-column { height: auto; display: block; }
   .job-stage {
     position: relative;
-    opacity: 1;
-    transform: none;
+    opacity: 0;
+    transform: translateY(20px);
     pointer-events: all;
-    margin-bottom: 3rem;
-    border-left: 2px solid var(--accent);
-    padding-left: 1.5rem;
+    margin-bottom: 4rem;
+    padding: 2rem 1rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 24px;
+    border: 1px solid var(--border);
+    border-top: 4px solid var(--accent); /* Move accent to top for symmetry */
+    text-align: center;
+    transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  
+  .job-stage.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .mobile-skill-matrix {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    width: 100%;
+  }
+
+  .matrix-item {
+    width: 100%;
   }
   .accent-text { font-size: 1.75rem; }
   .skills-column { order: 2; }
